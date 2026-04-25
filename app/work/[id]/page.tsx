@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, notFound } from "next/navigation";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Link from "next/link";
@@ -58,11 +58,7 @@ const projectsData = {
     liveUrl: "https://al-marid-cars.vercel.app/",
     githubUrl: "https://github.com/Ahmedooode/al-marid-cars",
     imgUrl: "/images/al-marid-2.png",
-    gallery: [
-      "/images/al-marid-1.png",
-      "/images/al-marid-3.png",
-      "/images/al-marid-4.png",
-    ],
+    gallery: ["/images/al-marid-1.png", "/images/al-marid-2.png"],
   },
 };
 
@@ -107,7 +103,7 @@ export default function ProjectDetails() {
   if (!project) return notFound();
 
   // إعدادات حركة الظهور المكشوف (Clip Path Reveal) للصور في Gallery
-  const revealVariants = {
+  const revealVariants: Variants = {
     hidden: { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" },
     visible: {
       clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
@@ -341,7 +337,7 @@ const GalleryItem = ({
   img: string;
   title: string;
   index: number;
-  revealVariants: any;
+  revealVariants: Variants;
 }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
