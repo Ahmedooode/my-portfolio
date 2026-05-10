@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="flex flex-col gap-2 md:gap-4 relative z-10">
           <div className="flex items-center gap-4 md:gap-6">
             <img
-              src="/your-avatar.jpg"
+              src="/images/linked-in-image.png"
               alt="Ahmed"
               className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full object-cover shrink-0"
             />
