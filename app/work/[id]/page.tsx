@@ -2,9 +2,10 @@
 
 import { useParams, notFound } from "next/navigation";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Link from "next/link";
+import { useLenis } from "lenis/react";
 
 // قاعدة بيانات المشاريع (تأكد من وجود المسارات الحقيقية للصور)
 const projectsData = {
@@ -67,6 +68,9 @@ export default function ProjectDetails() {
   const id = params.id as string;
   const project = projectsData[id as keyof typeof projectsData];
 
+  // الوصول إلى نسخة Lenis للتحكم في التمرير برمجياً
+  const lenis = useLenis();
+
   // حساب المشروع التالي
   const projectKeys = Object.keys(projectsData);
   const currentIndex = projectKeys.indexOf(id);
@@ -100,6 +104,17 @@ export default function ProjectDetails() {
     return () => clearInterval(interval);
   }, []);
 
+  // تنزيل الصفحة إلى الأعلى عند تغيير المشروع
+  useLayoutEffect(() => {
+    if (lenis) {
+      // إجبار Lenis على الانتقال للقمة فوراً بدون أنميشن
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      // حل احتياطي للمتصفح العادي
+      window.scrollTo(0, 0);
+    }
+  }, [id, lenis]);
+
   if (!project) return notFound();
 
   // إعدادات حركة الظهور المكشوف (Clip Path Reveal) للصور في Gallery
@@ -117,12 +132,12 @@ export default function ProjectDetails() {
 
       <div className="flex-grow">
         {/* --- Hero Section --- */}
-        <header className="pt-40 md:pt-52 px-6 md:px-16 max-w-[1440px] mx-auto flex flex-col justify-end min-h-[60vh] pb-12">
+        <header className="pt-32 md:pt-52 px-6 md:px-16 max-w-[1440px] mx-auto flex flex-col justify-end min-h-[35vh] md:min-h-[60vh] pb-8 md:pb-12">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-16"
+            className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-16"
           >
             <h1 className="text-[15vw] md:text-[12vw] font-medium tracking-tighter leading-[0.85] uppercase break-words flex-grow">
               {project.title}
@@ -269,6 +284,7 @@ export default function ProjectDetails() {
           </span>
           <Link
             href={`/work/${nextProjectId}`}
+            scroll={false} // منع Next.js من محاولة القفز التلقائي للتمرير
             className="group relative text-center cursor-pointer"
           >
             <h2 className="text-[15vw] md:text-[10vw] font-medium tracking-tighter leading-none hover:opacity-70 transition-opacity duration-300 break-words">

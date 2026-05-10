@@ -65,7 +65,7 @@ export default function WorkGallery() {
           <span className="font-label-caps text-[12px] font-semibold tracking-widest text-stone-400 block mb-2 md:mb-4 uppercase">
             SELECTED WORKS
           </span>
-          <h2 className="font-headline-md text-4xl md:text-[48px] font-medium tracking-tight">
+          <h2 className="font-headline-md text-4xl md:text-[48px] font-medium tracking-tight text-stone-900">
             Recent Projects
           </h2>
         </div>
@@ -115,7 +115,7 @@ export default function WorkGallery() {
                 <span className="font-label-caps text-[12px] text-stone-400 shrink-0">
                   {project.id}
                 </span>
-                <h3 className="font-display-lg text-4xl sm:text-5xl md:text-[80px] font-semibold tracking-tight transition-transform duration-500 md:group-hover:translate-x-4">
+                <h3 className="font-display-lg text-4xl sm:text-5xl md:text-[80px] font-semibold tracking-tight transition-transform duration-500 md:group-hover:translate-x-4 text-stone-900">
                   {project.title}
                 </h3>
               </div>
@@ -124,7 +124,7 @@ export default function WorkGallery() {
                 <span className="font-body-md text-[13px] md:text-[16px] tracking-wide text-stone-400">
                   {project.category}
                 </span>
-                <span className="font-body-lg text-[16px] md:text-[20px]">
+                <span className="font-body-lg text-[16px] md:text-[20px] text-stone-900">
                   {project.arabic}
                 </span>
               </div>
@@ -183,7 +183,7 @@ export default function WorkGallery() {
               {/* Text Content */}
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
-                  <h3 className="font-display-md text-2xl md:text-[28px] font-semibold tracking-tight">
+                  <h3 className="font-display-md text-2xl md:text-[28px] font-semibold tracking-tight text-stone-900">
                     {project.title}
                   </h3>
                   <span className="font-label-caps text-[12px] text-stone-400">

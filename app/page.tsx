@@ -7,7 +7,7 @@ import AboutIntro from "./components/AboutIntro";
 
 export default function Home() {
   return (
-    <main className="relative w-full min-h-screen">
+    <main className="relative w-full min-h-screen bg-white">
       <Navbar />
       <Hero />
       <AboutIntro />

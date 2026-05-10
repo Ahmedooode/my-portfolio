@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Epilogue } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "./components/SmoothScroll"; // استيراد المكون
+import SmoothScroll from "./components/SmoothScroll";
 
 const epilogue = Epilogue({
   subsets: ["latin"],
@@ -10,7 +10,7 @@ const epilogue = Epilogue({
 });
 
 export const metadata: Metadata = {
-  title: "Ahmed (Abu Aws) | Portfolio",
+  title: "Ahmed Al-hussien | Portfolio",
   description: "Full Stack Developer & UI/UX Expert",
 };
 
@@ -27,10 +27,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body
-        className={`${epilogue.variable} antialiased bg-stone-100 text-stone-900`}
-      >
-        {/* تغليف محتوى الموقع بالكامل */}
+      <body className={`${epilogue.variable} antialiased`}>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
